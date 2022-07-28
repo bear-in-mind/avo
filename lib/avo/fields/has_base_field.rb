@@ -14,6 +14,7 @@ module Avo
         @display = args[:display].present? ? args[:display] : :show
         @searchable = args[:searchable] == true
         @description = args[:description]
+        @associated_resource = args[:resource]
       end
 
       def searchable
@@ -50,7 +51,9 @@ module Avo
       end
 
       def target_resource
-        if @model._reflections[id.to_s].klass.present?
+        if @associated_resource.present?
+          @associated_resource
+        elsif @model._reflections[id.to_s].klass.present?
           Avo::App.get_resource_by_model_name @model._reflections[id.to_s].klass.to_s
         elsif @model._reflections[id.to_s].options[:class_name].present?
           Avo::App.get_resource_by_model_name @model._reflections[id.to_s].options[:class_name]
