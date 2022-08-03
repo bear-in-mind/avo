@@ -119,7 +119,7 @@ module Avo
     end
 
     def belongs_to_field
-      fields = ::Avo::App.get_resource_by_model_name(params[:via_reflection_class]).get_field_definitions
+      fields = ::Avo::App.get_resource_by_name(params[:via_reflection_class]).get_field_definitions
       fields.find { |f| f.id.to_s == params[:via_association_id] }
     end
   end
