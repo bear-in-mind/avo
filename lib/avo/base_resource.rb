@@ -93,7 +93,7 @@ module Avo
       end
 
       def authorization
-        Avo::Services::AuthorizationService.new Avo::App.current_user
+        Avo::Services::AuthorizationService.new Avo::App.current_user, model_class, policy_class: authorization_policy
       end
 
       def order_actions
